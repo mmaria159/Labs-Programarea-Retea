@@ -40,7 +40,7 @@ public class RequestsToAndys {
         throw new Exception("The name of account wasn't found in this page");
     }
 
-    public static void serchEmails() throws Exception {
+    public static void searchEmails() throws Exception {
         Response resp = connect("https://www.andys.md/ro/account").method(GET).cookies(cookies).execute();
         String text = resp.body();
         Pattern p = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+");
@@ -88,7 +88,7 @@ public class RequestsToAndys {
         System.out.println("\n" + "The list of all links :");
         getLinks();
         System.out.println("\n" + "The list of all emails :");
-        serchEmails();
+        searchEmails();
         System.out.println("\n" + "The list of all images :");
         getAllImages("https://www.andys.md/ro/catalog");
 
