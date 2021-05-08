@@ -1,3 +1,7 @@
+package lab3;
+
+import lab3.Authentification;
+import lab3.DownoaldImages;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

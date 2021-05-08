@@ -1,3 +1,5 @@
+package lab3;
+
 import org.jsoup.Connection;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;

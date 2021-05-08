@@ -1,3 +1,5 @@
+package lab3;
+
 import java.io.*;
 import java.net.URL;
 
