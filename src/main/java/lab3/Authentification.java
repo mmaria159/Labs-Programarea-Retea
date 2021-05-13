@@ -6,34 +6,28 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.util.Map;
 
 import static org.jsoup.Jsoup.*;
 
 public class Authentification {
 
-    /*  public static Map<String, String> getAccountPage () {
-           Response response = null;
-           try {
-
-               response = connect("https://www.andys.md/ro/login")
-                       .method(Connection.Method.POST)
-                       .data("email", "exempleuser007@gmail.com")
-                       .data("password", "Anonim_007")
-                       .execute();
-               Document homePage = connect("https://www.andys.md/ro/account")
-                       .cookies(response.cookies())
-                       .get();
-               System.out.println(response.body());
-               System.out.println(response.cookies());
-               System.out.println(homePage);
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-           return response.cookies();
-       }*/
+    final static  String authUser = "uC8ADg1n";
+    final static  String authPassword = "wWwVs3jr";
 
     public static Map<String, String> getCookies() {
+        Authenticator.setDefault(
+                new Authenticator() {
+                    public PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(
+                                authUser, authPassword.toCharArray());
+                    }
+                }
+        );
+        System.setProperty("http.proxyHost", "45.152.116.114");
+        System.setProperty("http.proxyPort", "1623");
         try {
             return connect("https://www.andys.md/ro/login")
                     .method(Connection.Method.POST)

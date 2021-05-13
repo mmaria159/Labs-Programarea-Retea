@@ -28,7 +28,7 @@ public class DownoaldImages extends Thread {
 
             os.close();
 
-            System.out.println("Image "+ strImageName + " saved");
+            System.out.println("Image " + strImageName + " saved");
 
         } catch (IOException e) {
             System.err.println("Image not found: " + strImageURL);
