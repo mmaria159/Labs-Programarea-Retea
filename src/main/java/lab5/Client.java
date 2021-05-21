@@ -83,7 +83,6 @@ public class Client implements Runnable{
     }
 
     public void setMessageNumber(String messageNumber){
-        //seter pozivam tek posle validacije podatka!
         this.messageNumber = messageNumber;
     }
 
@@ -186,7 +185,9 @@ public class Client implements Runnable{
         CharInputRestriction restrict = new CharInputRestriction();
         textFieldPort.addKeyListener(restrict);
         mFieldSend.addKeyListener(restrict);
-
+        //Clasa care este interesată de procesarea unui eveniment de acțiune implementează această interfață,
+        // iar obiectul creat cu acea clasă este înregistrat cu o componentă, utilizând metoda addActionListener a componentei.
+        // Când apare evenimentul de acțiune, se invocă metoda actionPerformed a acelui obiect.
         buttonEnter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -212,13 +213,14 @@ public class Client implements Runnable{
 
         buttonSend.addActionListener(new ActionListener() {
             @Override
+            //Invocat atunci când are loc o acțiune.
             public void actionPerformed(ActionEvent e) {
                 if(!validateEntries(mFieldSend.getText())){
                     return;
                 }
                 client.setPortSender(mFieldSend.getText());
                 client.setMessageNumber(message.getText());
-                //otvaranje thread za komunikaciju
+            // deschideți un fir de comunicare
                 clThread = new Thread(client);
                 clThread.start();
             }
@@ -292,6 +294,7 @@ public class Client implements Runnable{
             datagramSocket = new DatagramSocket(Integer.valueOf(this.getPortSender()));
             System.out.println(this.getMessageNumber());
             byte[] message = this.getMessageNumber().trim().getBytes(StandardCharsets.US_ASCII);
+            //Construiește un nou șir decodând matricea specificată de octeți utilizând setul de caractere specificat.
             System.out.println(new String(message,StandardCharsets.US_ASCII));
             InetAddress aHost = InetAddress.getByName(this.getHostRecipient());
             int serverPort = Integer.valueOf(this.getPortRecipient()).intValue();
@@ -308,9 +311,9 @@ public class Client implements Runnable{
         } catch (IOException e) {
             System.out.println("IO" + e.getMessage());
         } finally {
-            if (datagramSocket!= null) {
-                this.setMessageNumber("");
-                datagramSocket.close();
+                if (datagramSocket!= null) {
+                    this.setMessageNumber("");
+                    datagramSocket.close();
             }
         }
     }
